@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Page</title>
+</head>
+<body>
+    <h2>Tracking Data</h2>
+    <table border="1">
+        <tr>
+            <th>Created At</th>
+            <th>Product URL</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td><a href="{{ row[1] }}" target="_blank">{{ row[1] }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js -->
+</head>
+<body>
+    <h2>Target Price Trend Over Time</h2>
+
+    <!-- Canvas for Chart -->
+    <canvas id="priceChart"></canvas>
+
+    <script>
+        // Parse JSON data from Flask
+        var graphData = JSON.parse('{{ graph_data | tojson | safe }}');
+
+        // Extract X (Created_at) and Y (Target Price) values
+        var created_at = graphData.map(item => item.created_at);
+        var target_prices = graphData.map(item => item.target_price);
+
+        // Create Chart
+        var ctx = document.getElementById('priceChart').getContext('2d');
+        var priceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: created_at,  // X-axis values (Dates)
+                datasets: [{
+                    label: 'Target Price Over Time',
+                    data: target_prices, // Y-axis values (Prices)
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date & Time'
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 10
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Target Price'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

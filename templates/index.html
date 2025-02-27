@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricehistory</title>
+    <script src="https://kit.fontawesome.com/19de253184.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+sup {
+    font-size:0.5em;
+    vertical-align: super;
+}
+header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+}
+.header-left {
+    font-size: xx-large;
+    text-align:center;
+}
+.header-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+.header-right a:hover {
+    color: #00bcd4;
+}
+.container {
+    margin: 20px auto;
+    max-width: 750px;
+    background-color: white;
+    color:black;
+    border-radius: 8px;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 1);
+    padding: 20px;
+}
+h2 {
+    font-family:'Times New Roman', Times, serif;
+    text-align: center;
+    color: white;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+label {
+    color: black;
+    font-weight: bold;
+}
+input, button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: black;
+}
+footer {
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+}
+.hover-button {
+    position: relative;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.default-text {
+    display: inline;
+    transition: opacity 0.3s ease;
+}
+
+
+.hover-text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.hover-button:hover .default-text {
+    display: none;
+}
+
+.hover-button:hover .hover-text {
+    display: inline;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left" style="display: flex; justify-content: center; align-items: center;">Pricetracker</div>
+        <div class="header-right">
+            <a href="#about" title="About Us"><i class="fas fa-info-circle"></i>&nbsp;About Us</a> |
+            <a href="mailto:bhanutejapusarla@gmail.com" title="Contact us" id="contact-us"><i class="fas fa-envelope"></i>&nbsp;Contact Us</a> |
+            <a href="login.html" title="Logout" id="logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a> |
+            <a href="#" title="home" id="home"><i class="fas fa-home"></i>&nbsp;Home</a>
+        </div>
+       
+    </header>
+    <h2>"Stay Alert, Save Big"</h2>
+    <div class="container">
+        <form action="/add-to-tracking" method="POST">
+              <label for="product-url">Product URL:</label>
+                <input type="url" id="product-url" name="product_url" placeholder="Enter the Amazon product URL" required>
+                <label for="target-price">Target Price:</label>
+                <input type="number" id="target-price" name="target_price" placeholder="Enter your desired price" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+    
+                <button type="submit">Set Alert</button> 
+        </form>
+        <form action="{{ url_for('analysis') }}" method="post">
+            <button type="submit">Show</button>
+        </form>
+        
+    </div>
+    <script>
+        document.getElementById('home').addEventListener('click',function() {
+            window.location.href='login.html';
+        })
+        document.getElementById('logout').addEventListener('click',function() {
+            window.location.href='login.html';
+        })
+        document.getElementById('contact-us').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        const email = "bhanutejapusarla@gmail.com";
+        const subject = "Contact Request";
+        const body = "Hi, I want to reach out to you.";
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(gmailUrl, "_blank");
+    });
+    </script>
+    <footer>
+        <p>&copy; DropAlert. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DROP ALERT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #021542;
+            color: white;
+            padding: 10px 20px;
+        }
+        .header-left {
+            font-size: xx-large;
+        }
+        .header-right a {
+            color: whitesmoke;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .header-right a:hover {
+            color: #00bcd4;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: #021542;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            color: white;
+            font-weight: bold;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3700b3;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #021542;
+            color: white;
+            margin-top: 20px;
+        }
+        body {
+            background-color: #191B1C;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">DropAlert</div>
+        <div class="header-right">
+            <a href="#about" title="About Us">About Us</a> |
+            <a href="mailto:contact@dropalert.com" title="Contact us">Contact Us</a> 
+        </div>
+       
+    </header>
+
+    <h2>"Stay Alert, Save Big"</h2>
+    <div class="container">
+        <form action="/add-to-tracking" method="POST">
+            <label for="product-url">Product URL:</label>
+            <input type="url" id="product-url" name="product_url" placeholder="Enter the Amazon product URL" required>
+            <label for="target-price">Target Price:</label>
+            <input type="number" id="target-price" name="target_price" placeholder="Enter your desired price" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+            <button type="submit">Set Alert</button> 
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; DropAlert. All rights reserved.</p>
+    </footer>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reg.css') }}">
+
+    <style>
+        /* General Page Styling */
+        body {
+            background-color: #333;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        /* Container Styling */
+        .container {
+            background-color: white;
+            color: black;
+            width: 360px;
+            border-radius: 8px;
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container img {
+            width: 50px;
+            margin-bottom: 20px;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .container p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+       
+        .psreq {
+            font-size: 10px;
+            color: #666;
+            margin-top: 5px;
+            padding-left: 15px;
+            list-style-type: disc;
+            line-height: 1.4;
+        }
+
+        /* Button Styling */
+        .button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        /* Link Styling */
+        p a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <div class="container">
+        <form action="/register" method="post">
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" placeholder="Enter your first name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" placeholder="Enter your last name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="pwd1" placeholder="Enter your password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="pwd2" placeholder="Confirm your password" required>
+            </div>
+
+            <button type="submit" class="button">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+
+    <script>
+        document.getElementById("button")?.addEventListener("click", function(event) {
+            event.preventDefault();
+            window.location.href = "{{ url_for('login') }}";
+        });
+    </script>
+</body>
+</html>

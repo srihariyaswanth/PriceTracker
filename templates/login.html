@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 360px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 1);
+    padding: 20px;
+    text-align: center;
+    margin:200px;
+}
+
+.container img {
+    width: 50px;
+    margin-bottom: 20px;
+}
+
+.container h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.container p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 12px;
+    float: right;
+    margin-top: 5px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkbox input {
+    margin-right: 8px;
+}
+
+.checkbox label {
+    font-size: 14px;
+    color: #333;
+}
+
+.cta {
+    background-color: #333;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.social-login button {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.register {
+    font-size: 14px;
+    color: #666;
+}
+
+.register a {
+    color: #007BFF;
+    text-decoration: none;
+}
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <img src="" alt="Logo" style="width: 150px; height: 100px;">
+        <h1>Welcome back</h1>
+        <p>Please enter your details to login.</p>
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class='form-group'>
+                <select name="role" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select><br>
+            </div>
+            <div class="form-group">
+                <label for="pwd1">Password</label>
+                <input type="password" id="pwd1" name="password" placeholder="••••••••" required>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+            </div>
+
+            <button type="submit" class="cta" id="cta">Login</button>
+        </form>
+        <p class="register">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    </div>
+</body>
+</html>
+
